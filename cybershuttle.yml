@@ -1,0 +1,16 @@
+name: resnet-runner
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - jupyter
+  - ipykernel
+  - ipywidgets
+  - torch=1.10
+  - torchvision
+  - transformers
+  - pillow
+  - pip
+  - pip:
+      - datasets
