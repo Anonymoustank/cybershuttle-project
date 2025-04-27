@@ -1,5 +1,5 @@
 project:
-  name: "resnet-runner"
+  name: "ResNet-50 Image Classification Runner"
   description: "Run ResNet-50 image classification remotely through ICE HPC using Cybershuttle."
   homepage: https://github.com/Anonymoustank/cybershuttle-project
   authors:
