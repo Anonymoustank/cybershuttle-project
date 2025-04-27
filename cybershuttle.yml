@@ -1,16 +1,48 @@
-name: resnet-runner
+project:
+  name: "resnet-runner"
+  description: "Run ResNet-50 image classification remotely through ICE HPC using Cybershuttle."
+  homepage: https://github.com/Anonymoustank/cybershuttle-project
+  authors:
+    - yourgtid@gatech.edu
+  tags:
+    - cybershuttle
+    - resnet
+    - image-classification
+    - torch
+
+workspace:
+  location: /workspace
+  resources:
+    min_cpu: 2
+    min_gpu: 1
+    min_mem: 4096
+    gpu_mem: 8192
+  model_collection:
+    - source: cybershuttle
+      identifier: resnet-runner
+      mount_point: /cybershuttle_data/resnet-runner
+  data_collection: []
+
+additional_dependencies:
+  conda:
+    - python=3.10
+    - pip
+  pip:
+    - torch
+    - torchvision
+    - transformers
+    - pillow
+
 channels:
   - conda-forge
   - defaults
+
 dependencies:
-  - python=3.8
+  - python=3.10
   - jupyter
   - ipykernel
   - ipywidgets
-  - torch=1.10
+  - torch
   - torchvision
   - transformers
   - pillow
-  - pip
-  - pip:
-      - datasets
