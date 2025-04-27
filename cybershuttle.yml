@@ -3,7 +3,10 @@ project:
   description: "Run ResNet-50 image classification remotely through ICE HPC using Cybershuttle."
   homepage: https://github.com/Anonymoustank/cybershuttle-project
   authors:
-    - yourgtid@gatech.edu
+    - pkadekodi3@gatech.edu
+    - zyan319@gatech.edu
+    - ssagili3@gatech.edu
+    - swen61@gatech.edu
   tags:
     - cybershuttle
     - resnet
