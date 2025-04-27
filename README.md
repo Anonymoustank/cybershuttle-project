@@ -1,20 +1,27 @@
-# cybershuttle-project
+## Project Overview
 
-# Running the project locally
+- **Milestone 2.1**: Simplified the AI model workflow for non-expert users
+- **Milestone 2**: Connected local execution to ICE HPC using SSH and SLURM
+- **Milestone 3**: Packaged the model into a deployable app via Cybershuttle Sandbox
+
+## Repository Structure
+
+```
+CYBERSHUTTLE-PROJECT/
+├── .gitignore                # Git ignore file
+├── cybershuttle.yml           # Deployment config for Cybershuttle
+├── job_script.sh              # SLURM batch job script
+├── local2remote.ipynb         # Automated local-to-remote execution notebook
+├── README.md                  # Project guide (this file)
+├── resnetRunner.ipynb         # Final packaged Jupyter app for Cybershuttle
+└── run_model.py               # Model script for running on ICE HPC
+```
+This project extends an AI model to be **user-friendly, scalable, and remotely executable** on Georgia Tech ICE HPC via the Cybershuttle platform.
+
+## Running the project locally
 - Simply run resnetRunner.ipynb
 - The notebook should handle downloading the model and any related dependencies
 
-# Running the Model on HPC
-### Step 1: Make the following changes in local2remote.ipynb, replacing gburdell3 with your own GT username:
-```
-username = "gburdell3"
-remote_host = "login-ice.pace.gatech.edu"
-remote_path = "/home/hice1/gburdell3/cybershuttle_project"
-```
-### Step 2: Add your SSH key (if you haven't done this already) to ICE to ensure passwordless login
-- Run `ssh-keygen -t rsa` on your local machine to generate an SSH key
-- Run `ssh-copy-id gburdell3@login-ice.pace.gatech.edu`, replacing gburdell3 with your own GT username
-- Run local2remote.ipynb
 
 <!-- This is manual way -->
 <!-- Log in into Georgia tech ICE by running "ssh gburdell3@login-ice.pace.gatech.edu" then provide your password
@@ -37,5 +44,83 @@ pip install torch torchvision transformers pillow
 "
 
 Submit your job by "sbatch job_script.sh" then you should be seeing something like Submitted batch job 2539899
+ -->
 
-Run "squeue -u gburdell3" to check your job (replace it with your GT username) -->
+## Running the Model on HPC
+
+### 1. Automated Pipeline (Recommended)
+
+**Step 1**: Edit `local2remote.ipynb`
+```python
+username = "your_GTID"
+remote_host = "login-ice.pace.gatech.edu"
+remote_path = "/home/hice1/your_GTID/cybershuttle_project"
+```
+
+**Step 2**: Setup SSH Key for passwordless login
+```bash
+ssh-keygen -t rsa
+ssh-copy-id [your_GTID]@login-ice.pace.gatech.edu
+```
+
+**Step 3**: Run all cells in `local2remote.ipynb` to automate file transfer, environment setup, and job submission.
+
+### 2. Manual Remote Execution
+
+**Step 1**: SSH into ICE
+```bash
+ssh [your_GTID]@login-ice.pace.gatech.edu
+```
+
+**Step 2**: Create a project directory
+```bash
+mkdir cybershuttle_project
+```
+
+**Step 3**: Upload scripts and inputs
+```bash
+scp run_model.py job_script.sh [your_GTID]@login-ice.pace.gatech.edu:/home/hice1/[your_GTID]/cybershuttle_project/
+```
+
+**Step 4**: Set up the environment on ICE
+```bash
+module load python/3.10
+python -m venv myenv
+source myenv/bin/activate
+pip install --upgrade pip
+pip install torch torchvision transformers pillow
+```
+
+**Step 5**: Submit the SLURM job
+```bash
+sbatch job_script.sh
+```
+
+Check job status:
+```bash
+squeue -u [your_GTID]
+```
+
+
+<!-- For Part 2:
+
+make sure you change username to your GTID in local2remote.ipynb
+username = "zyan319"
+remote_host = "login-ice.pace.gatech.edu"
+remote_path = "/home/hice1/zyan319/cybershuttle_project"
+
+Using this to use the local to remote pipline:
+
+SSH key setup by running "ssh-keygen -t rsa" to generate SSH key this avoid needing a password to login in ICE
+then run "ssh-copy-id zyan319@login-ice.pace.gatech.edu"
+
+after you have done, this simply run local2remote.ipynb -->
+
+---
+
+
+## Credits
+
+- Developed for Georgia Tech CS /VIP PACE Cybershuttle Project 2.
+
+# 🚀 Let's Launch It!
