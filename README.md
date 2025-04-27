@@ -1,17 +1,29 @@
 # cybershuttle-project
 
+# Running the project locally
+- Simply run resnetRunner.ipynb
+- The notebook should handle downloading the model and any related dependencies
 
-
-
+# Running the Model on HPC
+### Step 1: Make the following changes in local2remote.ipynb, replacing gburdell3 with your own GT username:
+```
+username = "gburdell3"
+remote_host = "login-ice.pace.gatech.edu"
+remote_path = "/home/hice1/gburdell3/cybershuttle_project"
+```
+### Step 2: Add your SSH key (if you haven't done this already) to ICE to ensure passwordless login
+- Run `ssh-keygen -t rsa` on your local machine to generate an SSH key
+- Run `ssh-copy-id gburdell3@login-ice.pace.gatech.edu`, replacing gburdell3 with your own GT username
+- Run local2remote.ipynb
 
 <!-- This is manual way -->
 <!-- Log in into Georgia tech ICE by running "ssh gburdell3@login-ice.pace.gatech.edu" then provide your password
 
 Then make a new directory by "mkdir cybershuttle_project" in the root directory of your ICE(You should call this command inside ICE)
 
-RUN "scp run_model.py input.png job_script.sh zyan319@login-ice.pace.gatech.edu:/home/hice1/zyan319/cybershuttle_project/" to upload your script and data to ICE using scp
+RUN "scp run_model.py input.png job_script.sh gburdell3@login-ice.pace.gatech.edu:/home/hice1/gburdell3/cybershuttle_project/" to upload your script and data to ICE using scp
 
-SSH into ICE again: by running "ssh zyan319@login-ice.pace.gatech.edu"
+SSH into ICE again: by running "ssh gburdell3@login-ice.pace.gatech.edu"
 
 Cd into your folder by "cd cybershuttle_project"
 
@@ -26,18 +38,4 @@ pip install torch torchvision transformers pillow
 
 Submit your job by "sbatch job_script.sh" then you should be seeing something like Submitted batch job 2539899
 
-Run "squeue -u zyan319" to check your job(replace it with your GTID) -->
-
-For Part 2:
-
-make sure you change username to your GTID in local2remote.ipynb
-username = "zyan319"
-remote_host = "login-ice.pace.gatech.edu"
-remote_path = "/home/hice1/zyan319/cybershuttle_project"
-
-Using this to use the local to remote pipline:
-
-SSH key setup by running "ssh-keygen -t rsa" to generate SSH key this avoid needing a password to login in ICE
-then run "ssh-copy-id zyan319@login-ice.pace.gatech.edu"
-
-after you have done, this simply run local2remote.ipynb
+Run "squeue -u gburdell3" to check your job (replace it with your GT username) -->
