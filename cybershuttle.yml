@@ -11,41 +11,24 @@ project:
     - cybershuttle
     - resnet
     - image-classification
+    - apache-airavata
     - torch
 
 workspace:
   location: /workspace
   resources:
-    min_cpu: 2
-    min_gpu: 1
-    min_mem: 4096
-    gpu_mem: 8192
+    min_cpu: 4
+    min_gpu: 0
+    min_mem: 0
+    gpu_mem: 1024
   model_collection:
     - source: cybershuttle
-      identifier: resnet-runner
-      mount_point: /cybershuttle_data/resnet-runner
+      identifier: cybershuttle-reference
+      mount_point: /cybershuttle_data/cybershuttle-reference
   data_collection: []
 
 additional_dependencies:
   conda:
     - python=3.10
     - pip
-  pip:
-    - torch
-    - torchvision
-    - transformers
-    - pillow
-
-channels:
-  - conda-forge
-  - defaults
-
-dependencies:
-  - python=3.10
-  - jupyter
-  - ipykernel
-  - ipywidgets
-  - torch
-  - torchvision
-  - transformers
-  - pillow
+  pip: []
