@@ -48,7 +48,10 @@ Submit your job by "sbatch job_script.sh" then you should be seeing something li
 
 ## Running the Model on HPC
 
-### 1. Automated Pipeline (Recommended)
+### 1. Using Airavata (Recommended for online images)
+Run airavataRunner.ipynb one cell at a time. Make sure to follow all prompts as needed and input the link to the image you want classified at the bottom of the final cell.
+
+### 2. Automated Pipeline (Recommended for local images)
 
 **Step 1**: Edit `local2remote.ipynb`
 ```python
@@ -65,7 +68,7 @@ ssh-copy-id [your_GTID]@login-ice.pace.gatech.edu
 
 **Step 3**: Run all cells in `local2remote.ipynb` to automate file transfer, environment setup, and job submission.
 
-### 2. Manual Remote Execution
+### 3. Manual Remote Execution
 
 **Step 1**: SSH into ICE
 ```bash
